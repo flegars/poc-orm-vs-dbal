@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Domain\Sale\Purchase" table="purchase">
+        <id name="id" type="uuid"/>
+        <field name="bookId" column="book_id" type="integer"/>
+        <field name="purchasedOn" column="purchased_on" type="date_immutable"/>
+        <field name="basePriceInCents" column="base_price_in_cents" type="integer"/>
+        <field name="discountId" column="discount_id" type="integer" nullable="true"/>
+        <field name="paidInCents" column="paid_in_cents" type="integer"/>
+    </entity>
+</doctrine-mapping>

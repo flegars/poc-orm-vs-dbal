@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Domain\Rental\Rental" table="rental">
+        <indexes>
+            <index name="idx_rental_book_id" columns="book_id"/>
+        </indexes>
+        <id name="id" type="uuid"/>
+        <field name="bookId" column="book_id" type="integer"/>
+        <field name="rentedOn" column="rented_on" type="date_immutable"/>
+        <field name="dueOn" column="due_on" type="date_immutable"/>
+        <field name="basePriceInCents" column="base_price_in_cents" type="integer"/>
+        <field name="discountId" column="discount_id" type="integer" nullable="true"/>
+        <field name="priceInCents" column="price_in_cents" type="integer"/>
+        <field name="returnedOn" column="returned_on" type="date_immutable" nullable="true"/>
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Domain\Book\Book" table="book">
+        <indexes>
+            <index name="idx_book_title_id" columns="title,id"/>
+        </indexes>
+        <id name="id" type="integer"><generator strategy="NONE"/></id>
+        <field name="title" type="string" length="255"/>
+        <field name="priceInCents" column="price_in_cents" type="integer"/>
+        <field name="genre" type="string" length="32" enum-type="App\Domain\Book\Genre"/>
+        <field name="publishedOn" column="published_on" type="date_immutable"/>
+        <field name="stock" type="integer"/>
+        <one-to-many field="authors" target-entity="App\Domain\Book\BookAuthor" mapped-by="book" orphan-removal="true">
+            <cascade><cascade-persist/></cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>

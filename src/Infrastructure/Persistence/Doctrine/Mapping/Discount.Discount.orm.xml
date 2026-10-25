@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Domain\Discount\Discount" table="discount">
+        <indexes>
+            <index name="idx_discount_period" columns="starts_on,ends_on"/>
+        </indexes>
+        <id name="id" type="integer"><generator strategy="NONE"/></id>
+        <field name="kind" type="string" length="16" enum-type="App\Domain\Discount\DiscountKind"/>
+        <field name="value" type="integer"/>
+        <field name="startsOn" column="starts_on" type="date_immutable"/>
+        <field name="endsOn" column="ends_on" type="date_immutable"/>
+        <field name="target" type="string" length="32" enum-type="App\Domain\Discount\DiscountTarget"/>
+        <field name="genre" type="string" length="32" nullable="true" enum-type="App\Domain\Book\Genre"/>
+        <field name="publishedFrom" column="published_from" type="date_immutable" nullable="true"/>
+        <field name="publishedTo" column="published_to" type="date_immutable" nullable="true"/>
+        <one-to-many field="authors" target-entity="App\Domain\Discount\DiscountAuthor" mapped-by="discount" orphan-removal="true">
+            <cascade><cascade-persist/></cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>
